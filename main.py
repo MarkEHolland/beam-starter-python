@@ -1,10 +1,3 @@
-# Copyright 2022 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 <LICENSE-APACHE or
-# https://www.apache.org/licenses/LICENSE-2.0> or the MIT license
-# <LICENSE-MIT or https://opensource.org/licenses/MIT>, at your
-# option. This file may not be copied, modified, or distributed
-# except according to those terms.
 
 from apache_beam.options.pipeline_options import PipelineOptions
 
@@ -19,14 +12,28 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--input-text",
+        "--input_text",
         default="Default input text",
         help="Input text to print.",
+    )
+    parser.add_argument(
+        "--input_file",
+        dest='input_file',
+        default="C:\\Users\\marke\\projects\\beam-starter-python\\input\\kinglear.txt",
+        help="Input file to process.",
+    )
+    parser.add_argument(
+        "--output_file",
+        dest='output_file',
+        default="C:\\Users\\marke\\projects\\beam-starter-python\\output\\output",
+        help="Output file to process.",
     )
     args, beam_args = parser.parse_known_args()
 
     beam_options = PipelineOptions(save_main_session=True, setup_file="./setup.py")
     app.run(
         input_text=args.input_text,
+        input_file=args.input_file,
+        output_file=args.output_file,
         beam_options=beam_options,
     )

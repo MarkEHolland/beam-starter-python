@@ -15,8 +15,8 @@ setup(
     name="My app",
     version="1.0",
     description="Python Apache Beam pipeline.",
-    author="My name",
-    author_email="my@email.com",
+    author="Mark Holland",
+    author_email="markeholland@email.com",
     packages=find_packages(),
     install_requires=requirements,
 )

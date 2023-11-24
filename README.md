@@ -16,7 +16,8 @@ We recommend using a virtual environment to isolate your project's dependencies.
 python -m venv env
 
 # Activate the virtual environment.
-source env/bin/activate
+# source env/bin/activate
+c:/Users/marke/projects/beam-starter-python/env/Scripts/Activate.ps1
 ```
 
 While activated, your `python` and `pip` commands will point to the virtual environment,
