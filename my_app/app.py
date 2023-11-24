@@ -11,7 +11,7 @@ Concepts:
 1. Reading data from text files
 2. Specifying 'inline' transforms
 3. Counting a PCollection
-4. Writing data to Cloud Storage as text files
+4. Writing data to Storage as text files
 
 To execute this pipeline locally, first edit the code to specify the output
 location. Output location could be a local file path or an output prefix
@@ -30,25 +30,14 @@ from apache_beam.options.pipeline_options import SetupOptions
 
 
 def run(
-    input_text: str,
-    input_file: str,
-    output_file:str,
+    input: str,
+    output:str,
     beam_options: Optional[PipelineOptions] = None,
     test: Callable[[beam.PCollection], None] = lambda _: None,
 ) -> None:
     with beam.Pipeline(options=beam_options) as p: # create a pipeline object with the options=beam_options
-        """
-        elements = (
-            pipeline
-            | "Create elements" >> beam.Create(["Pipeline Started....", input_text])
-            | "Print elements" >> beam.Map(print)
-        )
-
-        # Used for testing only.
-         test(elements)
-        """
         # Read the text file[pattern] into a PCollection.
-        lines = p | ReadFromText(input_file)
+        lines = p | ReadFromText(input)
 
         # Count the occurrences of each word.
         counts = (
@@ -64,8 +53,8 @@ def run(
             (word, count) = word_count
             return '%s: %s' % (word, count)
 
-        output = counts | 'Format' >> beam.Map(format_result)
+        output_file = counts | 'Format' >> beam.Map(format_result)
 
         # Write the output using a "Write" transform that has side effects.
         # pylint: disable=expression-not-assigned
-        output | WriteToText(output_file)
+        output_file | WriteToText(output)

@@ -12,28 +12,22 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--input_text",
-        default="Default input text",
-        help="Input text to print.",
-    )
-    parser.add_argument(
-        "--input_file",
-        dest='input_file',
-        default="C:\\Users\\marke\\projects\\beam-starter-python\\input\\kinglear.txt",
+        "--input",
+        dest='input',
+        default="C:/Users/marke/projects/beam-starter-python/input/kinglear.txt",
         help="Input file to process.",
     )
     parser.add_argument(
-        "--output_file",
-        dest='output_file',
-        default="C:\\Users\\marke\\projects\\beam-starter-python\\output\\output",
-        help="Output file to process.",
+        "--output",
+        dest='output',
+        default="C:/Users/marke/projects/beam-starter-python/output/output",
+        help="Output file to store results.",
     )
     args, beam_args = parser.parse_known_args()
 
-    beam_options = PipelineOptions(save_main_session=True, setup_file="./setup.py")
+    beam_options = PipelineOptions(save_main_session=True, setup_file="./setup.py", runner="DirectRunner")
     app.run(
-        input_text=args.input_text,
-        input_file=args.input_file,
-        output_file=args.output_file,
+        input=args.input,
+        output=args.output,
         beam_options=beam_options,
     )
