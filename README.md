@@ -12,12 +12,15 @@ If you don't, you can download and install it from the
 We recommend using a virtual environment to isolate your project's dependencies.
 
 ```sh
+# activate py3.8.10 in vscode
+# check version
+python -V
+
 # Create a new Python virtual environment.
-python -m venv env
+python -m venv .myenv
 
 # Activate the virtual environment.
-# source env/bin/activate
-c:/Users/marke/projects/beam-starter-python/env/Scripts/Activate.ps1
+c:/Users/marke/projects/beam-starter-python/.myenv/Scripts/Activate.ps1
 ```
 
 While activated, your `python` and `pip` commands will point to the virtual environment,
@@ -28,6 +31,9 @@ As a one time setup, let's install the project's dependencies from the [`require
 ```py
 # It's always a good idea to update pip before installing dependencies.
 pip install -U pip
+
+# upgrade setuptools and wheel
+python -m pip install --upgrade pip setuptools wheel
 
 # Install the project as a local package, this installs all the dependencies as well.
 pip install -e .
