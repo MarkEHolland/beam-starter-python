@@ -23,7 +23,7 @@ import my_app
 class TestApp(unittest.TestCase):
     def test_run_direct_runner(self):
         # Note that the order of the elements doesn't matter.
-        expected = ["Test", "Hello", "World!"]
+        expected = ["Test", "C:\\Users\\marke\\projects\\beam-starter-python\\input\\kinglear.txt", "C:\\Users\\marke\\projects\\beam-starter-python\\output\\output"]
         my_app.run(
             input_text="Test",
             test=lambda elements: assert_that(elements, equal_to(expected)),
