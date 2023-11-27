@@ -37,14 +37,12 @@ def run(
 ) -> None:
     with beam.Pipeline(options=beam_options) as p: # create a pipeline object with the options=beam_options
         # Read the text file[pattern] into a PCollection.
-        lines = p | ReadFromText(input)
+        lines = p | 'read file' >> ReadFromText(input)
 
         # Count the occurrences of each word.
         counts = (
             lines
-            | 'Split' >> (
-                beam.FlatMap(
-                    lambda x: re.findall(r'[A-Za-z\']+', x)).with_output_types(str))
+            | 'Split' >> (beam.FlatMap(lambda x: re.findall(r'[A-Za-z\']+', x)).with_output_types(str))
             | 'PairWithOne' >> beam.Map(lambda x: (x, 1))
             | 'GroupAndSum' >> beam.CombinePerKey(sum))
 
