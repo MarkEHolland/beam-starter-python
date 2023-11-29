@@ -11,3 +11,6 @@ Create a virtual environment & run pipeline:
 7) install requirements.txt packages: pip install -e .
 8) test pipeline: python main.py --input-text="Greetings"
 
+[9) run pipeline with pyenv as environment: C:/Users/marke/.pyenv/pyenv-win/versions/3.8.10/python.exe c:/Users/marke/projects/beam-starter-python/main.py]
+
+
